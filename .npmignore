@@ -1,0 +1,40 @@
+# 源代码目录（不发布）
+src/
+lib/
+
+# 开发相关
+node_modules/
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+# 构建工具配置
+vite.config.js
+eslint.config.js
+
+# 开发文件
+index.html
+public/
+dist.zip
+
+# 测试和示例
+*.test.js
+*.test.jsx
+*.spec.js
+*.spec.jsx
+
+# 文档（保留 README.md）
+sdk三大功能方法说明.md
+sdk说明文档.md
+sdk说明文档简易版.md
+
+# Git
+.git/
+.gitignore
+
+# 其他
+*.local
+.env
+.env.local
+

@@ -1,0 +1,127 @@
+import { GAME_CONFIG } from '../config/constants'
+class Request {
+  constructor(baseURL = '') {
+    this.baseURL = baseURL
+    this.timeout = 10000
+  }
+
+  // 获取固定参数
+  getFixedParams() {
+    return {
+      gameKey: GAME_CONFIG.GAME_KEY,
+      gameVersion: GAME_CONFIG.GAME_VERSION,
+      sdkVersion: GAME_CONFIG.SDK_VERSION,
+      deviceName: 'H5'
+    }
+  }
+
+  // 获取token
+  getToken() {
+    return localStorage.getItem('hupu_token')
+  }
+
+  // 处理请求参数
+  processParams(params = {}) {
+    const fixedParams = this.getFixedParams()
+    const token = this.getToken()
+    
+    return {
+      ...fixedParams,
+      ...params,
+      ...(token ? { token } : {})
+    }
+  }
+
+  // 处理响应数据
+  handleResponse(data, url) {
+    console.log(`📨 响应数据: ${url}`, data)
+    
+    if (data.code === 1) {
+      return {
+        success: true,
+        data: data.data,
+        message: data.msg || '请求成功',
+        code: data.code
+      }
+    } else {
+      throw new Error(data.msg || `请求失败，错误码: ${data.code}`)
+    }
+  }
+
+  // 通用请求方法
+  async request(url, options = {}) {
+    // 处理请求体
+    let body = options.body
+    if (body && typeof body === 'object') {
+        body = JSON.stringify(this.processParams(body))
+    }
+
+    const config = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      timeout: this.timeout,
+      ...options,
+      body: body
+    }
+
+    const fullURL = this.baseURL + url
+
+    try {
+      console.log(`🚀 发起请求: ${config.method} ${fullURL}`, body ? JSON.parse(body) : '')
+      
+      const response = await fetch(fullURL, config)
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      return this.handleResponse(data, fullURL)
+      
+    } catch (error) {
+      console.error(`❌ 请求失败: ${fullURL}`, error)
+      throw error
+    }
+  }
+
+  // GET 请求
+  get(url, params = {}, options = {}) {
+    let queryString = ''
+    const processedParams = this.processParams(params)
+    if (Object.keys(processedParams).length > 0) {
+      queryString = '?' + new URLSearchParams(processedParams).toString()
+    }
+    return this.request(url + queryString, { method: 'GET', ...options })
+  }
+
+  // POST 请求
+  post(url, data = {}, options = {}) {
+    return this.request(url, {
+      method: 'POST',
+      body: data,
+      ...options
+    })
+  }
+
+  // PUT 请求
+  put(url, data = {}, options = {}) {
+    return this.request(url, {
+      method: 'PUT',
+      body: data,
+      ...options
+    })
+  }
+
+  // DELETE 请求
+  delete(url, options = {}) {
+    return this.request(url, { method: 'DELETE', ...options })
+  }
+}
+
+// 创建虎扑API请求实例
+export const hupuRequest = new Request('https://mzsdkapi.higame.cn/api/v2')
+
+export default Request

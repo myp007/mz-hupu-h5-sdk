@@ -1,0 +1,65 @@
+{
+  "name": "@mz/hupu-h5-sdk",
+  "version": "0.1.0",
+  "description": "虎扑H5 SDK React封装 - 提供授权登录、角色确认、商品内购等功能",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "hupu",
+    "sdk",
+    "react",
+    "h5",
+    "虎扑",
+    "登录",
+    "内购",
+    "游戏sdk"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/hupu-h5-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/hupu-h5-sdk/issues"
+  },
+  "homepage": "https://github.com/your-username/hupu-h5-sdk#readme",
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "vite": "^7.2.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
