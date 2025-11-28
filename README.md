@@ -1,4 +1,4 @@
-# @mz/hupu-h5-sdk
+# mz-h5-sdk
 
 虎扑H5 SDK React封装库，提供授权登录、角色确认、商品内购等核心功能。
 
@@ -13,11 +13,11 @@
 ## 安装
 
 ```bash
-npm install @mz/hupu-h5-sdk
+npm install mz-h5-sdk
 # 或
-yarn add @mz/hupu-h5-sdk
+yarn add mz-h5-sdk
 # 或
-pnpm add @mz/hupu-h5-sdk
+pnpm add mz-h5-sdk
 ```
 
 ## 快速开始
@@ -25,7 +25,7 @@ pnpm add @mz/hupu-h5-sdk
 ### 1. 在应用根组件包裹 Provider
 
 ```jsx
-import { HupuSDKProvider } from '@mz/hupu-h5-sdk'
+import { HupuSDKProvider } from 'mz-h5-sdk'
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
 #### 配置选项（可选）
 
 ```jsx
-import { HupuSDKProvider } from '@mz/hupu-h5-sdk'
+import { HupuSDKProvider } from 'mz-h5-sdk'
 
 function App() {
   const config = {
@@ -63,7 +63,7 @@ function App() {
 ### 2. 在组件中使用 Hook
 
 ```jsx
-import { useHupuSDK } from '@mz/hupu-h5-sdk'
+import { useHupuSDK } from 'mz-h5-sdk'
 
 function YourComponent() {
   const {
@@ -263,7 +263,7 @@ const handleGetBalance = async () => {
 ## 完整使用示例
 
 ```jsx
-import { HupuSDKProvider, useHupuSDK } from '@mz/hupu-h5-sdk'
+import { HupuSDKProvider, useHupuSDK } from 'mz-h5-sdk'
 
 function GameComponent() {
   const {
