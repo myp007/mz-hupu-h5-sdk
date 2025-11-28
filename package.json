@@ -37,7 +37,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/myp007/mz-hupu-h5-sdk.git"
+    "url": "git+https://github.com/myp007/mz-hupu-h5-sdk.git"
   },
   "bugs": {
     "url": "https://github.com/myp007/mz-hupu-h5-sdk/issues"
