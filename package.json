@@ -1,6 +1,6 @@
 {
   "name": "mz-h5-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "虎扑H5 SDK React封装 - 提供授权登录、角色确认、商品内购等功能",
   "type": "module",
   "main": "./dist/index.cjs",
