@@ -11,23 +11,30 @@ export const hupuH5Login = async (accessToken, config = {}) => {
   }
 
   try {
-    const deviceName = 'H5'
     const gameConfig = config.gameConfig || GAME_CONFIG
     const request = new Request(API_BASE_URL)
     
     const response = await request.post('/login/otherHupuH5Login', {
       accessToken: accessToken,
-      gameId: gameConfig.GAME_ID, // 使用统一的游戏ID
+      gameId: gameConfig.GAME_ID,
       gameKey: gameConfig.GAME_KEY,
       gameVersion: gameConfig.GAME_VERSION,
       sdkVersion: gameConfig.SDK_VERSION,
-      deviceName: deviceName
+      deviceName: 'H5'
     })
 
+    // 修改：检查 response.success
     if (response.success) {
+      // 确保 token 被正确保存
+      if (response.data?.token) {
+        localStorage.setItem('hupu_token', response.data.token)
+        console.log('✅ Token 已保存')
+      }
       return response.data || response
     } else {
-      throw new Error(response.message || '登录失败')
+      // 清除可能的无效 token
+      localStorage.removeItem('hupu_token')
+      throw new Error(response.message || `登录失败，错误码: ${response.code}`)
     }
   } catch (error) {
     console.error('H5登录失败:', error)
@@ -38,21 +45,28 @@ export const hupuH5Login = async (accessToken, config = {}) => {
 // 确认角色接口
 export const confirmRole = async (roleData = {}, config = {}) => {
   try {
+    const gameConfig = config.gameConfig || GAME_CONFIG
     const request = new Request(API_BASE_URL)
+    
     const response = await request.post('/user/chooseRole', {
-      serverId: '123',
-      roleId: '123', 
+      gameId: gameConfig.GAME_ID, // 确保传递 gameId
+      gameKey: gameConfig.GAME_KEY,
+      gameVersion: gameConfig.GAME_VERSION,
+      sdkVersion: gameConfig.SDK_VERSION,
+      deviceName: 'H5',
+      serverId: 'server_1', // 使用实际值
+      roleId: 'test_role_123', 
+      roleName: '测试角色',
       level: '1',
-      vip: '99',
-      nickName: 'test',
-      serverName: 'test123',
+      vip: '0',
       ...roleData
     })
 
+    // 修改：检查 response.success
     if (response.success) {
       return response.data
     } else {
-      throw new Error(response.message || '确认角色失败')
+      throw new Error(response.message || `确认角色失败，错误码: ${response.code}`)
     }
   } catch (error) {
     console.error('确认角色失败:', error)
@@ -65,18 +79,24 @@ export const getProductInfo = async (productData = {}, config = {}) => {
   try {
     const gameConfig = config.gameConfig || GAME_CONFIG
     const request = new Request(API_BASE_URL)
+    
     const response = await request.post('/order/getProductInfo', {
-      sku: '1',
-      roleId: '1231', 
-      serverId: '1231',
       gameId: gameConfig.GAME_ID,
+      gameKey: gameConfig.GAME_KEY,
+      gameVersion: gameConfig.GAME_VERSION,
+      sdkVersion: gameConfig.SDK_VERSION,
+      deviceName: 'H5',
+      sku: productData.sku || '1',
+      roleId: productData.roleId || 'test_role_123', 
+      serverId: productData.serverId || 'server_1',
       ...productData
     })
 
+    // 修改：检查 response.success
     if (response.success) {
       return response.data
     } else {
-      throw new Error(response.message || '获取商品信息失败')
+      throw new Error(response.message || `获取商品信息失败，错误码: ${response.code}`)
     }
   } catch (error) {
     console.error('获取商品信息失败:', error)

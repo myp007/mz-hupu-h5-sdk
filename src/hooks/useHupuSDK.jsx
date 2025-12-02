@@ -214,7 +214,7 @@ export const HupuSDKProvider = ({
       // 调用后端登录接口
       console.log('🚀 调用后端登录接口...')
       const loginResult = await hupuH5Login(accessToken, mergedConfig)
-      console.log('登录信息==',loginResult)
+      console.log('登录信息==',loginResult,loginResult.token)
       // 保存token到localStorage
       if (loginResult?.token) {
         localStorage.setItem('hupu_token', loginResult.token)

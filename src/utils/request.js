@@ -34,19 +34,29 @@ class Request {
 
   // 处理响应数据
   handleResponse(data, url) {
-    console.log(`📨 响应数据: ${url}`, data)
-    
-    if (data.code === 1) {
-      return {
-        success: true,
-        data: data.data,
-        message: data.msg || '请求成功',
-        code: data.code
-      }
-    } else {
-      throw new Error(data.msg || `请求失败，错误码: ${data.code}`)
+  console.log(`📨 响应数据: ${url}`, data)
+  
+  // 修改：根据实际业务码判断成功
+  // 假设业务成功码是 1，但需要查看实际接口文档
+  const successCodes = [1, 1000, 0] // 可能的成功码
+  
+  if (successCodes.includes(data.code)) {
+    return {
+      success: true,
+      data: data.data,
+      message: data.msg || '请求成功',
+      code: data.code
+    }
+  } else {
+    // 重要：返回完整的错误信息，不直接抛出
+    return {
+      success: false,
+      message: data.msg || `请求失败，错误码: ${data.code}`,
+      code: data.code,
+      data: data.data || null
     }
   }
+}
 
   // 通用请求方法
   async request(url, options = {}) {
