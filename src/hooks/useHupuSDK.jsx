@@ -129,13 +129,13 @@ export const HupuSDKProvider = ({
     const currentHostname = window.location.hostname
     const currentOrigin = window.location.origin
 
-    // 1. 检测是否在虎扑App内
+    // 1. 检测是否在App内
     const isInHupuApp = /hupu|hoopchina/i.test(userAgent) || window.self !== window.top
 
-    // 2. 检测是否在允许的域名下（虎扑白名单域名）
+    // 2. 检测是否在允许的域名下（白名单域名）
     const allowedDomains = [
       'mzsdkapi.higame.cn',
-      // 可以添加其他虎扑允许的域名
+      // 可以添加其他允许的域名
     ]
     const isAllowedDomain = allowedDomains.some(domain =>
       currentHostname === domain || currentHostname.endsWith('.' + domain)
@@ -222,11 +222,11 @@ export const HupuSDKProvider = ({
       }
       // 保存用户信息和token
       setUserInfo(loginResult)
-      console.log('✅ 虎扑H5登录成功:', loginResult)
+      console.log('✅ H5登录成功:', loginResult)
 
       return loginResult
     } catch (error) {
-      console.error('❌ 虎扑H5登录失败:', error)
+      console.error('❌ H5登录失败:', error)
       throw error
     } finally {
       setLoading(false)
@@ -244,21 +244,21 @@ export const HupuSDKProvider = ({
       throw error
     }
   }
-  // 获取虎扑用户详细信息
+  // 获取用户详细信息
   const getHupuUserDetail = async () => {
     try {
-      console.log('👤 获取虎扑用户详细信息...')
+      console.log('👤 获取用户详细信息...')
       const userDetail = await safeCall('getUserDetail')
       let userInfo = userDetail.data
       console.log('用户信息==',JSON.stringify(userInfo) )
       if (userInfo) {
         localStorage.setItem('userInfo', JSON.stringify(userInfo) )
         setHupuUserInfo(userInfo)
-        console.log('✅ 获取虎扑用户信息成功:', userInfo)
+        console.log('✅ 获取用户信息成功:', userInfo)
       }
       return userInfo
     } catch (error) {
-      console.error('❌ 获取虎扑用户信息失败:', error)
+      console.error('❌ 获取用户信息失败:', error)
       return null
     }
   }
@@ -417,9 +417,9 @@ const purchaseProduct = async (productParams = {}, onSuccess) => {
 
         let instance = null
 
-        // 在虎扑App内 或 在允许的域名下 才加载真实SDK
+        // 在App内 或 在允许的域名下 才加载真实SDK
         if (isInHupuApp || isAllowedDomain) {
-          // 虎扑环境或允许域名：加载真实SDK
+          // 环境或允许域名：加载真实SDK
           try {
             instance = await loadHupuSDK(INTERNAL_CONFIG.sdkScriptURL)
             console.log('✅ 真实SDK加载成功 - 使用生产环境方法')
@@ -450,7 +450,7 @@ const purchaseProduct = async (productParams = {}, onSuccess) => {
           instance = createDevMockSDK(mergedConfig.gameConfig)
         } else {
           // 其他环境：不提供SDK功能
-          console.log('⚠️ 非虎扑环境且非允许域名 - SDK功能不可用')
+          console.log('⚠️ 非环境且非允许域名 - SDK功能不可用')
           setSdkReady(true)
           return
         }
@@ -468,7 +468,7 @@ const purchaseProduct = async (productParams = {}, onSuccess) => {
     initializeSDK()
   }, [])
 
-  // SDK就绪后自动登录（只在虎扑环境中）
+  // SDK就绪后自动登录（只在环境中）
   useEffect(() => {
     if (sdkReady && isInHupuApp && sdkInstance) {
       performAutoLogin()

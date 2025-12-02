@@ -121,7 +121,7 @@ class Request {
   }
 }
 
-// 创建虎扑API请求实例
+// 创建API请求实例
 export const hupuRequest = new Request('https://mzsdkapi.higame.cn/api/v2')
 
 export default Request

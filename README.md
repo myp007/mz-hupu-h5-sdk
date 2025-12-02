@@ -1,10 +1,10 @@
 # mz-h5-sdk
 
-虎扑H5 SDK React封装库，提供授权登录、角色确认、商品内购等核心功能。
+H5 SDK React封装库，提供授权登录、角色确认、商品内购等核心功能。
 
 ## 功能特性
 
-- ✅ **授权登录** - 虎扑H5环境下的用户登录认证
+- ✅ **授权登录** - H5环境下的用户登录认证
 - ✅ **角色确认** - 游戏角色信息确认和上报
 - ✅ **商品内购** - 完整的商品购买流程（获取商品信息、充值、购买）
 - ✅ **用户信息** - 获取用户详细信息和余额
@@ -71,7 +71,7 @@ function YourComponent() {
     sdkReady,        // SDK是否就绪
     loading,         // 登录加载状态
     userInfo,        // 用户信息（后端返回）
-    hupuUserInfo,    // 虎扑用户信息
+    hupuUserInfo,    // 用户信息
     
     // 方法
     loginWithHupu,   // 登录
@@ -104,8 +104,8 @@ SDK的上下文提供者，需要在应用根组件使用。
 | `sdkReady` | `boolean` | SDK是否初始化完成 |
 | `loading` | `boolean` | 登录请求加载状态 |
 | `userInfo` | `object \| null` | 后端返回的用户信息 |
-| `hupuUserInfo` | `object \| null` | 虎扑SDK返回的用户详细信息 |
-| `isInHupuApp` | `boolean` | 是否在虎扑App内 |
+| `hupuUserInfo` | `object \| null` | SDK返回的用户详细信息 |
+| `isInHupuApp` | `boolean` | 是否在App内 |
 | `isDevMode` | `boolean` | 是否为开发模式 |
 | `autoLogin` | `boolean` | 是否自动登录 |
 
@@ -114,7 +114,7 @@ SDK的上下文提供者，需要在应用根组件使用。
 ##### 登录相关
 
 **loginWithHupu()**
-- 描述：执行虎扑H5登录
+- 描述：执行H5登录
 - 返回：`Promise<object>` - 登录结果，包含token等信息
 - 示例：
 ```jsx
@@ -133,7 +133,7 @@ const handleLogin = async () => {
 - 返回：`Promise<object>` - 登录结果
 
 **getHupuUserDetail()**
-- 描述：获取虎扑用户详细信息
+- 描述：获取用户详细信息
 - 返回：`Promise<object>` - 用户详细信息
 
 ##### 角色相关
@@ -370,8 +370,8 @@ function App() {
 
 ## 注意事项
 
-1. **环境检测**：SDK会自动检测是否在虎扑App内或允许的域名下运行
-2. **自动登录**：在虎扑App内，SDK初始化完成后会自动尝试登录
+1. **环境检测**：SDK会自动检测是否在App内或允许的域名下运行
+2. **自动登录**：在App内，SDK初始化完成后会自动尝试登录
 3. **Token存储**：登录成功后，token会自动保存到 `localStorage` 的 `hupu_token` 键
 4. **API配置**：当前API基础URL为 `https://mzsdkapi.higame.cn/api/v2`，如需修改请自行配置
 
@@ -386,3 +386,5 @@ MIT
 - 支持授权登录
 - 支持角色确认
 - 支持商品内购
+
+npm run build && npm version patch && npm publish

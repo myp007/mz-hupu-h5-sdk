@@ -4,7 +4,7 @@ import { GAME_CONFIG } from '../config/constants'
 // 内部API基础URL（不对外暴露）
 const API_BASE_URL = 'https://mzsdkapi.higame.cn/api/v2'
 
-// 虎扑H5登录接口
+// H5登录接口
 export const hupuH5Login = async (accessToken, config = {}) => {
   if (!accessToken) {
     throw new Error('accessToken 不能为空')
@@ -30,7 +30,7 @@ export const hupuH5Login = async (accessToken, config = {}) => {
       throw new Error(response.message || '登录失败')
     }
   } catch (error) {
-    console.error('虎扑H5登录失败:', error)
+    console.error('H5登录失败:', error)
     throw error
   }
 }
