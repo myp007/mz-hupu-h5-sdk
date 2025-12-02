@@ -360,7 +360,7 @@ function App() {
 ```
 
 ## 环境要求
-
+- Node >= 20.19.0
 - React >= 18
 - React DOM >= 18
 
