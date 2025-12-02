@@ -1,0 +1,161 @@
+/* TestHupuSDK.css */
+.test-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.status-section {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.status-section h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.status-item .label {
+  font-weight: bold;
+  color: #555;
+}
+
+.status-item .value {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.value.ready {
+  color: #52c41a;
+}
+
+.value.not-ready {
+  color: #ff4d4f;
+}
+
+.value.loading {
+  color: #faad14;
+}
+
+.value.idle {
+  color: #1890ff;
+}
+
+.function-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.function-group {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.function-group h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  display: inline-block;
+  width: 80px;
+  font-weight: bold;
+  color: #555;
+}
+
+.input-group input {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.test-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: all 0.3s;
+}
+
+.test-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.test-button.primary {
+  background: #1890ff;
+  color: white;
+}
+
+.test-button.primary:hover:not(:disabled) {
+  background: #40a9ff;
+}
+
+.test-button.secondary {
+  background: #52c41a;
+  color: white;
+}
+
+.test-button.secondary:hover:not(:disabled) {
+  background: #73d13d;
+}
+
+.test-button.tertiary {
+  background: #faad14;
+  color: white;
+}
+
+.test-button.tertiary:hover:not(:disabled) {
+  background: #ffc53d;
+}
+
+.log-section {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  color: #666;
+}
+
+.log-section h2 {
+  margin-top: 0;
+}

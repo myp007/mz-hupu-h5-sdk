@@ -130,10 +130,6 @@ const handleLogin = async () => {
 }
 ```
 
-**getTokenAndLogin()**
-- 描述：获取token并立即登录（组合方法）
-- 返回：`Promise<object>` - 登录结果
-
 **getHupuUserDetail()**
 - 描述：获取用户详细信息
 - 返回：`Promise<object>` - 用户详细信息
@@ -153,7 +149,15 @@ const handleLogin = async () => {
     serverName: string   // 服务器名称
   }
   ```
-- 返回：`Promise<object>` - 确认结果
+- 返回：{
+    "code": 1,
+    "msg": "您已成功进入",
+    "data": {
+        "isOpen": 0,
+        "delayTime": 0,
+        "dailySignInDelayTime": ""
+    }
+} - 确认结果
 - 示例：
 ```jsx
 const handleConfirmRole = async () => {
@@ -206,7 +210,21 @@ const handleConfirmRole = async () => {
 - 参数：
   - `productParams` - 商品参数（同 getProductInfo）
   - `onSuccess` - 购买成功回调函数（可选）
-- 返回：`Promise<object>` - 购买结果
+- 返回：{
+    "code": 1,
+    "msg": "获取成功",
+    "data": {
+        "name": "测试商品",
+        "amount": "1.00",
+        "percent": 1,
+        "money": "1.00",
+        "discount": "0.00",
+        "points": "0",
+        "switchStatus": 0,
+        "payPoints": "10.00"
+    }
+} 
+- 购买结果
 - 示例：
 ```jsx
 const handlePurchase = async () => {
@@ -241,26 +259,6 @@ const handleGetBalance = async () => {
   }
 }
 ```
-
-**recharge(rechargeData)**
-- 描述：调用SDK充值接口
-- 参数：
-  ```js
-  {
-    amount: number,     // 充值金额（单位：分，需要乘以10）
-    extInfo: {
-      other: string,
-      orderId: string,
-      self: {
-        game_id: string,
-        cp_order: string,
-        sku: string,
-        server_id: string
-      }
-    }
-  }
-  ```
-- 返回：`Promise<object>`
 
 ## 完整使用示例
 
