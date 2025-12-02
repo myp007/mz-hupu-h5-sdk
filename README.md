@@ -115,7 +115,9 @@ SDK的上下文提供者，需要在应用根组件使用。
 
 **loginWithHupu()**
 - 描述：执行H5登录
-- 返回：`Promise<object>` - 登录结果，包含token等信息
+- 返回：{ sign: "20ea3e85993887b1b528ec514ab79659",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImZvbyI6ImJhciJ9.eyJpc3MiOiJoaWdhbWUiLCJhdWQiOiJoaWdhbWUiLCJqdGkiOiI0ZjFnMjNhMTJhYSIsImlhdCI6MTc2NDY0NzgwOS4xNTUyMDQsIm5iZiI6MTc2NDY0NzgwOS4xNTUyMDQsImV4cCI6MTc2NTI1MjYwOS4xNTUyMDQsInVpZCI6MjU3OTc3Nn0.UD_kcUqlgv-j0Vi8uhwXPpAzpVlf9wuDkrnlFnb6shc"} 
+- 登录结果，包含token等信息
 - 示例：
 ```jsx
 const handleLogin = async () => {
