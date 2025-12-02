@@ -115,8 +115,20 @@ SDK的上下文提供者，需要在应用根组件使用。
 
 **loginWithHupu()**
 - 描述：执行H5登录
-- 返回：{ sign: "20ea3e85993887b1b528ec514ab79659",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImZvbyI6ImJhciJ9.eyJpc3MiOiJoaWdhbWUiLCJhdWQiOiJoaWdhbWUiLCJqdGkiOiI0ZjFnMjNhMTJhYSIsImlhdCI6MTc2NDY0NzgwOS4xNTUyMDQsIm5iZiI6MTc2NDY0NzgwOS4xNTUyMDQsImV4cCI6MTc2NTI1MjYwOS4xNTUyMDQsInVpZCI6MjU3OTc3Nn0.UD_kcUqlgv-j0Vi8uhwXPpAzpVlf9wuDkrnlFnb6shc"} 
+- 返回：`Promise<object>` - 登录响应数据
+- 响应示例：
+{
+    "code": 1,
+    "msg": "登陆成功",
+    "data": {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImZvbyI6ImJhciJ9.eyJpc3MiOiJoaWdhbWUiLCJhdWQiOiJoaWdhbWUiLCJqdGkiOiI0ZjFnMjNhMTJhYSIsImlhdCI6MTc2NDY1NDc1OS42OTA0MiwibmJmIjoxNzY0NjU0NzU5LjY5MDQyLCJleHAiOjE3NjUyNTk1NTkuNjkwNDIsInVpZCI6MjU3OTc3Nn0.OofsPHeWOnuUHnEpoF18tfareAcTUbC3wq3UcgMNnFQ",
+        "uid": 2579776,
+        "sign": "20ea3e85993887b1b528ec514ab79659",
+        "isReal": false,
+        "age": 0,
+        "mobile": ""
+    }
+}
 - 登录结果，包含token等信息
 - 示例：
 ```jsx
@@ -129,11 +141,6 @@ const handleLogin = async () => {
   }
 }
 ```
-
-**getHupuUserDetail()**
-- 描述：获取用户详细信息
-- 返回：`Promise<object>` - 用户详细信息
-
 ##### 角色相关
 
 **confirmRole(roleData)**
@@ -149,7 +156,9 @@ const handleLogin = async () => {
     serverName: string   // 服务器名称
   }
   ```
-- 返回：{
+- 返回：`Promise<object>` - 确认结果
+- 响应示例：
+{
     "code": 1,
     "msg": "您已成功进入",
     "data": {
@@ -157,7 +166,7 @@ const handleLogin = async () => {
         "delayTime": 0,
         "dailySignInDelayTime": ""
     }
-} - 确认结果
+}
 - 示例：
 ```jsx
 const handleConfirmRole = async () => {
@@ -210,7 +219,9 @@ const handleConfirmRole = async () => {
 - 参数：
   - `productParams` - 商品参数（同 getProductInfo）
   - `onSuccess` - 购买成功回调函数（可选）
-- 返回：{
+- 返回：`Promise<object>` - 购买结果
+- 响应示例：
+{
     "code": 1,
     "msg": "获取成功",
     "data": {
@@ -223,8 +234,8 @@ const handleConfirmRole = async () => {
         "switchStatus": 0,
         "payPoints": "10.00"
     }
-} 
-- 购买结果
+}
+
 - 示例：
 ```jsx
 const handlePurchase = async () => {
